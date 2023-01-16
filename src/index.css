@@ -12,29 +12,18 @@ code {
     monospace;
 }
 
-.app{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 .app-wrapper{
-  display: flex;
+  min-width: 200px;
 }
 
 .news-feed{
   background-color: rgb(204, 204, 231);
   padding: 1em;
-  margin: .5em;
-  box-shadow: 0 3px 10px rgb(0 0 0 / 0.3);
-  max-width: 300px;
 }
 
 .currency-converter{
   background-color: rgb(230, 223, 211);
   padding: 1em;
-  margin: .5em;
-  box-shadow: 0 3px 10px rgb(0 0 0 / 0.3);
   text-align: center;
   align-self: center;
 }
@@ -43,8 +32,8 @@ code {
   background-color: rgb(221, 230, 221);
   padding: 1.5em;
   margin-top: 1em;
-  box-shadow: 0 3px 10px rgb(0 0 0 / 0.3);
   border-radius: 10px;
+  box-shadow: 0 3px 1 0px rgb(0 0 0 / 0.3);
 }
 
 .input-box{
@@ -54,16 +43,113 @@ code {
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.3);
 }
 
+td{
+  display: block;
+  width: 100%;
+}
+
+table, button{
+  max-width: 100%;
+  margin: 0 auto;
+}
+
 input, select{
-  border: none;
+  text-align: center;
+  border: rgb(74, 164, 219) solid 1px;
+  background-color: rgb(236, 230, 223);
+  padding: .8em;
+  margin-top: .5em;
+  border-radius: 10px;
+}
+
+input{
+  max-width: 55px;
 }
 
 button{
   border: none;
-  float: right;
-  margin: .1em;
+  border-radius: 10px;
+  margin-top: 2em;
+  padding: 1em 4.5em;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  font-weight: bolder;
+  font-size: .7rem;
+  background-color:rgb(116, 116, 145);
+  color: whitesmoke;
 }
 
 button:hover{
   background-color: coral;
+}
+
+/*  ~~~~~~~~~~~~~~~~~~ for desktop ~~~~~~~~~~~~~~~~~~~~~~~*/
+
+
+@media (min-width: 450px){
+  
+  .app{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .app-wrapper{
+    display: flex;
+  }
+  
+  .news-feed{
+    margin: .5em;
+    max-width: 300px;
+    flex-shrink: 2;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.3);
+  }
+  
+  .currency-converter{
+    margin: .5em;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.3);
+  }
+  
+  .exchange-rate{
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.3);
+  }
+  
+  .input-box{
+    text-align: right;
+  }
+  
+  button{
+    float: right;
+    border: none;
+    margin: .2em;
+    padding: .3em .5em;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    font-weight: bolder;
+    font-size: .7rem;
+    background-color:rgb(116, 116, 145);
+    color: whitesmoke;
+    border-radius: 0px;
+  }
+  
+  td{
+    display: inline;
+  }
+  
+  table, button{
+    width: auto;
+  }
+  
+  input, select{
+    border: none;
+    text-align: left;
+    background-color: whitesmoke;
+    padding: 0;
+    margin-top: none;
+    border-radius: 0px;
+  }
+  
+  input{
+    max-width: 100px;
+  }
 }

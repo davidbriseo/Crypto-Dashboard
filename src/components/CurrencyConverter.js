@@ -26,20 +26,16 @@ function CurrencyConverter() {
 
         const options = {
             method: 'GET',
-            url: 'https://alpha-vantage.p.rapidapi.com/query',
-            params: {from_currency: chosenPrimaryCurrency, function: 'CURRENCY_EXCHANGE_RATE', to_currency: chosenSecondaryCurrency},
-            headers: {
-              'X-RapidAPI-Key': process.env.REACT_APP_RAPID_API_KEY,
-              'X-RapidAPI-Host': 'alpha-vantage.p.rapidapi.com'
-            }
-          };
+            url: 'http://localhost:8000/convert',
+            params: {from_currency: chosenPrimaryCurrency, function: 'CURRENCY_EXCHANGE_RATE', to_currency: chosenSecondaryCurrency}
+          }
           
           axios.request(options).then(function (response) {
-              setResult(response.data["Realtime Currency Exchange Rate"]["5. Exchange Rate"]*amount)
+              setResult(response.data*amount)
               setExchangeData({
                 primaryCurrency: chosenPrimaryCurrency,
                 secondaryCurrency: chosenSecondaryCurrency,
-                exchangeRate: response.data["Realtime Currency Exchange Rate"]["5. Exchange Rate"]
+                exchangeRate: response.data
               })
               
           }).catch(function (error) {
