@@ -10,14 +10,18 @@ function NewsFeed() {
 
     const options = {
       method: 'GET',
-      url: 'http://localhost:8000/news'
-    }
+      url: 'https://crypto-news16.p.rapidapi.com/news/coindesk',
+      headers: {
+        'X-RapidAPI-Key': process.env.REACT_APP_RAPID_API_KEY,
+        'X-RapidAPI-Host': 'crypto-news16.p.rapidapi.com'
+      }
+  }
     
     axios.request(options).then(function (response) {
-      setArticles(response.data);
+      setArticles(response.data)
     }).catch(function (error) {
-      console.error(error);
-    });
+      console.error(error)
+    })
   }, [])
 
   const news = articles?.slice(0,7).map((article, index) => {

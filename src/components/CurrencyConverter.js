@@ -27,20 +27,23 @@ function CurrencyConverter() {
         const options = {
             method: 'GET',
             url: 'http://localhost:8000/convert',
-            params: {from_currency: chosenPrimaryCurrency, function: 'CURRENCY_EXCHANGE_RATE', to_currency: chosenSecondaryCurrency}
-          }
+            params: {from_currency: chosenPrimaryCurrency, function: 'CURRENCY_EXCHANGE_RATE', to_currency: chosenSecondaryCurrency},
+            headers: {
+              'X-RapidAPI-Key': process.env.REACT_APP_RAPID_API_KEY,
+              'X-RapidAPI-Host': 'alpha-vantage.p.rapidapi.com'
+            }
+        }
           
-          axios.request(options).then(function (response) {
-              setResult(response.data*amount)
-              setExchangeData({
-                primaryCurrency: chosenPrimaryCurrency,
-                secondaryCurrency: chosenSecondaryCurrency,
-                exchangeRate: response.data
-              })
-              
-          }).catch(function (error) {
-              console.error(error)
-          });
+        axios.request(options).then(function (response) {
+            setResult(response.data["Realtime Currency Exchange Rate"]["5. Exchange Rate"]*amount)
+            setExchangeData({
+            primaryCurrency: chosenPrimaryCurrency,
+            secondaryCurrency: chosenSecondaryCurrency,
+            exchangeRate: response.data["Realtime Currency Exchange Rate"]["5. Exchange Rate"]
+            })
+        }).catch(function (error) {
+            console.error(error)
+        });
 }
 
 
