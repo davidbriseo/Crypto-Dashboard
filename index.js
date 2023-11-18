@@ -8,6 +8,8 @@ require('dotenv').config()
 const app = express()
 
 app.use(cors())
+app.disable('etag');
+
 
 app.get("/", (req, res) => {
     res.json("hi")
@@ -53,3 +55,5 @@ app.get("/convert", (req, res) => {
         console.error(error)
     });
 })
+
+app.listen(3000, '0.0.0.0');
