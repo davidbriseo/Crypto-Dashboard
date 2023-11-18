@@ -2,6 +2,7 @@ import ExchangeRate from "./ExchangeRate"
 import React from "react"
 import axios from 'axios'
 
+
 function CurrencyConverter() {
     const currencies = ["BTC", "ETH", "USD", "MXN","XRP", "LTC", "ADA"]
 
@@ -22,11 +23,13 @@ function CurrencyConverter() {
         )
     })
 
-    function convert(){
+    	console.log(process.env.REACT_APP_HOST)
+
+	function convert(){
 
         const options = {
             method: 'GET',
-            url: 'http://localhost:8000/convert',
+            url: 'http://process.env.REACT_APP_HOST:process.env.REACT_APP_PORT/convert',
             params: {from_currency: chosenPrimaryCurrency, function: 'CURRENCY_EXCHANGE_RATE', to_currency: chosenSecondaryCurrency}
           }
           

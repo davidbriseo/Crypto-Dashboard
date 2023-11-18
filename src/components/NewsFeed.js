@@ -4,13 +4,12 @@ import axios from "axios";
 function NewsFeed() {
 
   const [articles, setArticles] = React.useState(null)
-  console.log(process.env.REACT_APP_RAPID_API_KEY)
 
   React.useEffect(()=>{
 
     const options = {
       method: 'GET',
-      url: 'http://localhost:8000/news'
+      url: 'http://process.env.REACT_APP_HOST:process.env.REACT_APP_PORT/news'
     }
     
     axios.request(options).then(function (response) {
