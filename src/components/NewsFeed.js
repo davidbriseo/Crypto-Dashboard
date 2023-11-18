@@ -1,6 +1,7 @@
 import React from "react"
 import axios from "axios";
 
+
 function NewsFeed() {
 
   const [articles, setArticles] = React.useState(null)
@@ -9,7 +10,7 @@ function NewsFeed() {
 
     const options = {
       method: 'GET',
-      url: 'http://process.env.REACT_APP_HOST:process.env.REACT_APP_PORT/news'
+      url: `http://${process.env.REACT_APP_HOST}:${process.env.REACT_APP_PORT}/news`
     }
     
     axios.request(options).then(function (response) {
