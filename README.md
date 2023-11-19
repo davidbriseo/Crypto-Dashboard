@@ -1,6 +1,6 @@
 # Crypto Dashboard
 
-This is a personal project to practice the use of APIs and experiment with a backend, although the server is not deployed the file can be found in the "React-App-with-express" branch.
+This project serves as a practical exercise in API implementation, designed to hone skills in interfacing with external services. To bolster security and enhance code reusability, sensitive information is managed using environment variables. The project is hosted on an AWS EC2 instance, providing a scalable and reliable infrastructure for both the project and its Express App backend. API calls are made seamlessly from this hosted environment, ensuring efficient communication with external services.  
 
 ## Table of contents
 
@@ -38,14 +38,14 @@ Users should be able to:
 ### Links
 
 - Solution URL: [See source code](https://github.com/davidbriseo/crypto-dashboard/tree/main)
-- Live Site URL: [davidbriseo.github.io/crypto-dashboard](https://davidbriseo.github.io/crypto-dashboard/)
-
-- Solution (with Express App) Site URL: [Source code + Express app](https://github.com/davidbriseo/crypto-dashboard/tree/React-App-with-express)
 
 ## My process
 
 ### Built with
 
+- AWS EC2
+- Express
+- Git
 - Semantic HTML5 markup
 - CSS custom properties
 - Flexbox
@@ -55,4 +55,4 @@ Users should be able to:
 
 ### What I learned
 
-This project was developed to use test working with a express server, however the final product was not deployed with the backend since that goes beyond the scope for this project. 
+The original purpose of this project was about safely storing API secrets. Then to enhance the experience I hosted the backend and frontend in an aws ec2 instance. I learned about the use of SSH keys, hot to usea Linux terminal and some practice of Git. 

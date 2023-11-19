@@ -1,21 +1,17 @@
 import React from "react"
 import axios from "axios";
 
+
 function NewsFeed() {
 
   const [articles, setArticles] = React.useState(null)
-  console.log(process.env.REACT_APP_RAPID_API_KEY)
 
   React.useEffect(()=>{
 
     const options = {
       method: 'GET',
-      url: 'https://crypto-news16.p.rapidapi.com/news/coindesk',
-      headers: {
-        'X-RapidAPI-Key': process.env.REACT_APP_RAPID_API_KEY,
-        'X-RapidAPI-Host': 'crypto-news16.p.rapidapi.com'
-      }
-  }
+      url: `http://${process.env.REACT_APP_HOST}:${process.env.REACT_APP_PORT}/news`
+    }
     
     axios.request(options).then(function (response) {
       setArticles(response.data)

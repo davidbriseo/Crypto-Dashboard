@@ -2,6 +2,7 @@ import ExchangeRate from "./ExchangeRate"
 import React from "react"
 import axios from 'axios'
 
+
 function CurrencyConverter() {
     const currencies = ["BTC", "ETH", "USD", "MXN","XRP", "LTC", "ADA"]
 
@@ -11,7 +12,7 @@ function CurrencyConverter() {
     const [result, setResult] = React.useState(0)
     const [exchangeData, setExchangeData] = React.useState({
         primaryCurrency: "BTC",
-        secondaryCurrency: "BTC",
+        secondaryCurrency: "USD",
         exchangeRate: 0
     })
 
@@ -22,17 +23,14 @@ function CurrencyConverter() {
         )
     })
 
-    function convert(){
+
+	function convert(){
 
         const options = {
             method: 'GET',
-            url: 'http://localhost:8000/convert',
-            params: {from_currency: chosenPrimaryCurrency, function: 'CURRENCY_EXCHANGE_RATE', to_currency: chosenSecondaryCurrency},
-            headers: {
-              'X-RapidAPI-Key': process.env.REACT_APP_RAPID_API_KEY,
-              'X-RapidAPI-Host': 'alpha-vantage.p.rapidapi.com'
-            }
-        }
+            url: `http://${process.env.REACT_APP_HOST}:${process.env.REACT_APP_PORT}/convert`,
+            params: {from_currency: chosenPrimaryCurrency, function: 'CURRENCY_EXCHANGE_RATE', to_currency: chosenSecondaryCurrency}
+          }
           
         axios.request(options).then(function (response) {
             setResult(response.data["Realtime Currency Exchange Rate"]["5. Exchange Rate"]*amount)
