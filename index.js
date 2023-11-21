@@ -34,8 +34,8 @@ app.get("/news", (req, res) => {
 
 app.get("/convert", (req, res) => {
     
-    const toCurrency = req.query.to_currency
-    const fromCurrency = req.query.from_currency
+    const toCurrency = req.query.to_currency || "USD"
+    const fromCurrency = req.query.from_currency || "BTC"
 
     console.log(fromCurrency, toCurrency)
 

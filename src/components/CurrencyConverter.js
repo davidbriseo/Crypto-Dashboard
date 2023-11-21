@@ -7,7 +7,7 @@ function CurrencyConverter() {
     const currencies = ["BTC", "ETH", "USD", "MXN","XRP", "LTC", "ADA"]
 
     const [chosenPrimaryCurrency, setChosenPrimaryCurrency] = React.useState("BTC")
-    const [chosenSecondaryCurrency, setChosenSecondaryCurrency] = React.useState("BTC")
+    const [chosenSecondaryCurrency, setChosenSecondaryCurrency] = React.useState("USD")
     const [amount, setAmount] = React.useState(1)
     const [result, setResult] = React.useState(0)
     const [exchangeData, setExchangeData] = React.useState({
@@ -33,11 +33,11 @@ function CurrencyConverter() {
           }
           
         axios.request(options).then(function (response) {
-            setResult(response.data["Realtime Currency Exchange Rate"]["5. Exchange Rate"]*amount)
+            setResult(response.data*amount)
             setExchangeData({
             primaryCurrency: chosenPrimaryCurrency,
             secondaryCurrency: chosenSecondaryCurrency,
-            exchangeRate: response.data["Realtime Currency Exchange Rate"]["5. Exchange Rate"]
+            exchangeRate: response.data
             })
         }).catch(function (error) {
             console.error(error)
