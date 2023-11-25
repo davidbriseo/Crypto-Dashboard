@@ -152,4 +152,33 @@ button:hover{
   input{
     max-width: 100px;
   }
+  
+  .form-input {
+    display: block;
+    margin: 1em 0;
+  }
+  
+  .submit-button{
+    display: block;
+    padding: .5rem;
+    margin: 1em 0;
+    float: none;
+  }
+  
+  .login-page{
+    margin: 0;
+  }
+  
+  .container{
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .container-form{
+    border: 1px #000 solid;
+    max-width: 400px;
+    padding: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+
 }

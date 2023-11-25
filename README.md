@@ -24,6 +24,12 @@ This project serves as a practical exercise in API implementation, designed to h
 
 The original purpose of this project was about safely storing API secrets. Then to enhance the experience I hosted the backend and frontend in an aws ec2 instance. I learned about the use of SSH keys, hot to usea Linux terminal and some practice of Git. Then to expand on the experience and solidfy some concepts I used a S3 bucket as a website host.  
 
+#### EC2 Instance
+
+#### S3 Bucket 
+When making the build the package JSON file had the line "homepage" that was causing problems because it was makeing the build files to have the path "crypto-dashboard/etc/js", and thus making the file unreadable.
+Also since the the static file are on a folder they didn't upload along with the rest of the files, this happens when the "Add files" button is used. 
+
 ### Specifications
 
 Users should be able to:
