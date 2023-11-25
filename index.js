@@ -11,6 +11,18 @@ app.use(cors())
 app.disable('etag');
 
 
+function isAuth(req, res, next) {
+        const auth = req.headers.authorization;
+
+        if(auth === "password"){
+                next()
+        } else {
+                res.status(401)
+                res.send("Access forbidden")
+        }
+}
+
+
 app.get("/", (req, res) => {
     res.json("hi")
 })
@@ -54,6 +66,21 @@ app.get("/convert", (req, res) => {
     }).catch(function (error) {
         console.error(error)
     });
+})
+
+app.get("/secrets", isAuth, (req, res) => {
+    const secrets = [
+        {
+            id: 1,
+            name: "secret 1"
+        },
+        {
+            id: 2,
+            name: "secret 2"
+        }
+    ]
+
+    res.json(secrets)
 })
 
 app.listen(process.env.REACT_APP_PORT, '0.0.0.0');
