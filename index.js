@@ -58,7 +58,7 @@ app.get("/", (req, res) => {
     res.json("hi")
 })
 
-app.get("/news", (req, res) => {
+app.get("/news", basicAuth, (req, res) => {
     const options = {
         method: 'GET',
         url: 'https://crypto-news16.p.rapidapi.com/news/coindesk',
@@ -75,7 +75,7 @@ app.get("/news", (req, res) => {
     });
 })
 
-app.get("/convert", (req, res) => {
+app.get("/convert",basicAuth, (req, res) => {
     
     const toCurrency = req.query.to_currency || "USD"
     const fromCurrency = req.query.from_currency || "BTC"

@@ -29,7 +29,11 @@ function CurrencyConverter() {
         const options = {
             method: 'GET',
             url: `http://${process.env.REACT_APP_HOST}:${process.env.REACT_APP_PORT}/convert`,
-            params: {from_currency: chosenPrimaryCurrency, function: 'CURRENCY_EXCHANGE_RATE', to_currency: chosenSecondaryCurrency}
+            params: {from_currency: chosenPrimaryCurrency, function: 'CURRENCY_EXCHANGE_RATE', to_currency: chosenSecondaryCurrency},
+            auth: {
+                username: 'user1',
+                password: 'pass1'
+              }
           }
           
         axios.request(options).then(function (response) {
