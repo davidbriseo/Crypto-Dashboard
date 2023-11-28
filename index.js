@@ -11,6 +11,37 @@ app.use(cors())
 app.disable('etag');
 
 
+const validCredentials = [
+    {username: "user1", password: "pass1"},
+    {username: "user2", password: "pass2"},
+    {username: "user3", password: "pass3"}
+]
+
+const basicAuth = (req, res, next) => {
+    const authHeader = req.headers.authorization
+    console.log(authHeader)
+
+    if (!authHeader || !authHeader.startsWith("Basic ")) {
+        return res.status(401).send("Unauthorized")
+    }
+
+    const base64Credentials = authHeader.split(" ")[1]
+    const credentials = Buffer.from(base64Credentials, "base64").toString("ascii")
+    const [username, password] = credentials.split(":")
+
+    //Check if provided credentials match any valid pair
+    const isValidCredentials = validCredentials.some(
+        cred => cred.username === username && cred.password === password
+    )
+
+    if (isValidCredentials) {
+        return next()
+    } else {
+        return res.status(401).send("Unauthorized")
+    }
+}
+
+// example middleware for Basic Authentication
 function isAuth(req, res, next) {
         const auth = req.headers.authorization;
 
@@ -68,7 +99,8 @@ app.get("/convert", (req, res) => {
     });
 })
 
-app.get("/secrets", isAuth, (req, res) => {
+// example protected Route
+app.get("/secrets", basicAuth, (req, res) => {
     const secrets = [
         {
             id: 1,
