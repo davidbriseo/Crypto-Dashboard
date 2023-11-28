@@ -29,24 +29,20 @@ function CurrencyConverter() {
         const options = {
             method: 'GET',
             url: `http://${process.env.REACT_APP_HOST}:${process.env.REACT_APP_PORT}/convert`,
-            params: {from_currency: chosenPrimaryCurrency, function: 'CURRENCY_EXCHANGE_RATE', to_currency: chosenSecondaryCurrency},
-            auth: {
-                username: 'user1',
-                password: 'pass1'
-              }
-          }
+            params: {from_currency: chosenPrimaryCurrency, function: 'CURRENCY_EXCHANGE_RATE', to_currency: chosenSecondaryCurrency}
+        }
           
         axios.request(options).then(function (response) {
             setResult(response.data*amount)
             setExchangeData({
-            primaryCurrency: chosenPrimaryCurrency,
-            secondaryCurrency: chosenSecondaryCurrency,
-            exchangeRate: response.data
+                primaryCurrency: chosenPrimaryCurrency,
+                secondaryCurrency: chosenSecondaryCurrency,
+                exchangeRate: response.data
             })
         }).catch(function (error) {
             console.error(error)
         });
-}
+    }
 
 
     return (

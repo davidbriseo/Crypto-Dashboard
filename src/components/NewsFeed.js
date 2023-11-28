@@ -1,20 +1,16 @@
 import React from "react"
-import axios from "axios";
+import axios from "axios"
 
 
 function NewsFeed() {
 
   const [articles, setArticles] = React.useState(null)
 
-  React.useEffect(()=>{
+  React.useEffect(() => {
 
     const options = {
       method: 'GET',
-      url: `http://${process.env.REACT_APP_HOST}:${process.env.REACT_APP_PORT}/news`,
-      auth: {
-        username: 'user3',
-        password: 'pass3'
-      }
+      url: `http://${process.env.REACT_APP_HOST}:${process.env.REACT_APP_PORT}/news`
     }
     
     axios.request(options).then(function (response) {

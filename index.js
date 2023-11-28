@@ -10,6 +10,7 @@ const app = express()
 app.use(cors())
 app.disable('etag');
 
+const API_URL =  "http://localhost:3000"
 
 const validCredentials = [
     {username: "user1", password: "pass1"},
@@ -35,27 +36,36 @@ const basicAuth = (req, res, next) => {
     )
 
     if (isValidCredentials) {
-        return next()
+        next()
+        // return res.json({ success: true})
     } else {
-        return res.status(401).send("Unauthorized")
+        return res.status(401).json({ success: false, message: 'Invalid credentials' })
     }
 }
 
 // example middleware for Basic Authentication
-function isAuth(req, res, next) {
-        const auth = req.headers.authorization;
+// function isAuth(req, res, next) {
+//         const auth = req.headers.authorization;
 
-        if(auth === "password"){
-                next()
-        } else {
-                res.status(401)
-                res.send("Access forbidden")
-        }
-}
+//         if(auth === "password"){
+//                 next()
+//         } else {
+//                 res.status(401)
+//                 res.send("Access forbidden")
+//         }
+// }
 
 
 app.get("/", (req, res) => {
     res.json("hi")
+})
+
+// app.post("/login", basicAuth, (req, res) => {
+//     return res.json({ success: true})
+// })
+
+app.get(`${API_URL}/home`, basicAuth, (req, res) => {
+    res.json({success: true, message: "Home Page"})
 })
 
 app.get("/news", basicAuth, (req, res) => {
@@ -75,7 +85,7 @@ app.get("/news", basicAuth, (req, res) => {
     });
 })
 
-app.get("/convert",basicAuth, (req, res) => {
+app.get("/convert", (req, res) => {
     
     const toCurrency = req.query.to_currency || "USD"
     const fromCurrency = req.query.from_currency || "BTC"
@@ -100,7 +110,7 @@ app.get("/convert",basicAuth, (req, res) => {
 })
 
 // example protected Route
-app.get("/secrets", basicAuth, (req, res) => {
+app.get("/secrets", (req, res) => {
     const secrets = [
         {
             id: 1,
