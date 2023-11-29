@@ -83,6 +83,43 @@ button:hover{
   background-color: coral;
 }
 
+.error-message{
+  color: red;
+  text-transform: uppercase;
+  font-weight: 900;
+  font-size: small;
+  letter-spacing: 1px;
+}
+.container-form{
+  margin: 0 auto;
+  max-width: 250px;
+  text-align: center;
+}
+
+form > *{
+  max-width: 100%;
+  display: block;
+  margin: 1em auto;
+}
+
+.form-checkbox, label {
+  display: inline;
+}
+
+label{
+  padding: .5em;
+}
+
+.form-input {
+  background-color: whitesmoke;
+}
+
+.submit-button{
+  font-size: .7rem;
+  letter-spacing: 1.5px;
+  font-weight: 900;
+}
+
 /*  ~~~~~~~~~~~~~~~~~~ for desktop ~~~~~~~~~~~~~~~~~~~~~~~*/
 
 
@@ -153,14 +190,30 @@ button:hover{
     max-width: 100px;
   }
   
-  .form-input {
-    display: block;
-    margin: 1em 0;
+  .container-form{
+    border: 1px grey solid;
+    max-width: 400px;
+    padding: 1em 3em;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    text-align: left;
   }
-  
+
+  .container-form, form > *{
+    border-radius: 5px;
+  }
+
+  .form-input{
+    margin: 1em 0;
+    max-width: 15em;
+    padding: 1em;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: .9rem;
+  }
+
   .submit-button{
     display: block;
-    padding: .5rem;
+    font-size: .75rem;
+    padding: .8rem 1.8rem;
     margin: 1em 0;
     float: none;
   }
@@ -173,12 +226,4 @@ button:hover{
     max-width: 400px;
     margin: 0 auto;
   }
-  
-  .container-form{
-    border: 1px #000 solid;
-    max-width: 400px;
-    padding: 1rem;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  }
-
 }

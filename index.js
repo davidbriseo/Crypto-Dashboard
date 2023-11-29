@@ -1,5 +1,3 @@
-//const PORT = 8000
-
 const express = require('express')
 const cors = require('cors')
 const axios = require('axios');
@@ -10,14 +8,13 @@ const app = express()
 app.use(cors())
 app.disable('etag');
 
-const API_URL =  "http://localhost:3000"
-
 const validCredentials = [
     {username: "user1", password: "pass1"},
     {username: "user2", password: "pass2"},
     {username: "user3", password: "pass3"}
 ]
 
+// example middleware for Basic Authentication
 const basicAuth = (req, res, next) => {
     const authHeader = req.headers.authorization
     console.log(authHeader)
@@ -37,38 +34,21 @@ const basicAuth = (req, res, next) => {
 
     if (isValidCredentials) {
         next()
-        // return res.json({ success: true})
     } else {
         return res.status(401).json({ success: false, message: 'Invalid credentials' })
     }
 }
-
-// example middleware for Basic Authentication
-// function isAuth(req, res, next) {
-//         const auth = req.headers.authorization;
-
-//         if(auth === "password"){
-//                 next()
-//         } else {
-//                 res.status(401)
-//                 res.send("Access forbidden")
-//         }
-// }
 
 
 app.get("/", (req, res) => {
     res.json("hi")
 })
 
-// app.post("/login", basicAuth, (req, res) => {
-//     return res.json({ success: true})
-// })
-
-app.get(`${API_URL}/home`, basicAuth, (req, res) => {
-    res.json({success: true, message: "Home Page"})
+app.get(`/login`, basicAuth, (req, res) => {
+    res.json({success: true, message: "Login Page"})
 })
 
-app.get("/news", basicAuth, (req, res) => {
+app.get("/news", (req, res) => {
     const options = {
         method: 'GET',
         url: 'https://crypto-news16.p.rapidapi.com/news/coindesk',
@@ -107,22 +87,6 @@ app.get("/convert", (req, res) => {
     }).catch(function (error) {
         console.error(error)
     });
-})
-
-// example protected Route
-app.get("/secrets", (req, res) => {
-    const secrets = [
-        {
-            id: 1,
-            name: "secret 1"
-        },
-        {
-            id: 2,
-            name: "secret 2"
-        }
-    ]
-
-    res.json(secrets)
 })
 
 app.listen(process.env.REACT_APP_PORT, '0.0.0.0');
