@@ -4,7 +4,9 @@ import axios from "axios"
 
 function LoginPage() {
 
-    const API_URL =  "http://localhost:8000"
+    // const API_URL =  "http://localhost:8000"
+    const API_URL = "http://ec2-18-116-63-216.us-east-2.compute.amazonaws.com:8000"
+
     
     const navigate = useNavigate()
 
