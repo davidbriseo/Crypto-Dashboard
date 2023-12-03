@@ -9,9 +9,9 @@ app.use(cors())
 app.disable('etag');
 
 const validCredentials = [
-    {username: "user1", password: "pass1"},
-    {username: "user2", password: "pass2"},
-    {username: "user3", password: "pass3"}
+    {username: process.env.REACT_APP_AUTH_USER1, password: process.env.REACT_APP_AUTH_PASS1},
+    {username: process.env.REACT_APP_AUTH_USER2, password: process.env.REACT_APP_AUTH_PASS2},
+    {username: process.env.REACT_APP_AUTH_USER3, password: process.env.REACT_APP_AUTH_PASS3}
 ]
 
 // example middleware for Basic Authentication
@@ -48,7 +48,7 @@ app.get(`/login`, basicAuth, (req, res) => {
     res.json({success: true, message: "Login Page"})
 })
 
-app.get("/news", (req, res) => {
+app.get("/news", basicAuth, (req, res) => {
     const options = {
         method: 'GET',
         url: 'https://crypto-news16.p.rapidapi.com/news/coindesk',
@@ -65,7 +65,7 @@ app.get("/news", (req, res) => {
     });
 })
 
-app.get("/convert", (req, res) => {
+app.get("/convert", basicAuth, (req, res) => {
     
     const toCurrency = req.query.to_currency || "USD"
     const fromCurrency = req.query.from_currency || "BTC"
