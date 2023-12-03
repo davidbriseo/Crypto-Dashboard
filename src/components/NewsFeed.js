@@ -10,7 +10,11 @@ function NewsFeed() {
 
     const options = {
       method: 'GET',
-      url: `http://${process.env.REACT_APP_HOST}:${process.env.REACT_APP_PORT}/news`
+      url: `http://${process.env.REACT_APP_HOST}:${process.env.REACT_APP_PORT}/news`,
+      auth: {
+        username: `${process.env.REACT_APP_AUTH_USER1}`,
+        password: `${process.env.REACT_APP_AUTH_PASS1}`
+      }
     }
     
     axios.request(options).then(function (response) {

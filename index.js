@@ -59,9 +59,10 @@ app.get("/news", basicAuth, (req, res) => {
     }
       
     axios.request(options).then(function (response) {
-    res.json(response.data)
+        console.log(response)
+        res.json(response.data)
     }).catch(function (error) {
-    console.error(error)
+        console.error(error)
     });
 })
 

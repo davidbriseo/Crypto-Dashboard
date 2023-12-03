@@ -1,15 +1,56 @@
-import NewsFeed from "./components/NewsFeed"
-import CurrencyConverter from "./components/CurrencyConverter"
+
+import Dashboard from './Dashboard'
+import LoginPage from './LoginPage'
+import PrivateRoutes from './utils/PrivateRoutes'
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+import React from 'react'
+
 
 function App() {
+  
+  function handleData(name, value, type, checked){
+    setFormData(prevFormData => {
+      return {
+        ...prevFormData,
+        [name]: type === "checkbox"? checked : value
+      }
+    })
+  }
+  
+  const [formData, setFormData] = React.useState({
+    userName:"",
+    password: "",
+    showPassword: false
+  })
+
+  const [isAuth, setIsAuth] = React.useState(false)
+
+
+  const [isSubmitted, setIsSubmitted] = React.useState(false)
+  
+  console.log(`isAuth: ${isAuth}`)
+
   return (
-    <div className="app">
-      <h1>Crypto Dashboard</h1>
-      <div className="app-wrapper">
-      <CurrencyConverter />
-      <NewsFeed />
-      </div>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route element={<PrivateRoutes 
+            formData={formData}
+            isSubmitted={isSubmitted}
+            isAuth={isAuth}
+        />}>
+          <Route path="/" element={<Dashboard />}/>
+        </Route>
+        <Route 
+          path="/login" 
+          element={<LoginPage
+            formData = {formData}
+            handleData={handleData}
+            setIsSubmitted={setIsSubmitted}
+            setIsAuth={setIsAuth}
+          />} 
+        /> 
+      </Routes> 
+    </BrowserRouter>
   )
 }
 
