@@ -2,35 +2,28 @@ import React from "react"
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
 
-function LoginPage() {
+function LoginPage({handleData, formData, setIsSubmitted, setIsAuth}) {
 
     // const API_URL =  "http://localhost:8000"
     const API_URL = "http://ec2-18-116-63-216.us-east-2.compute.amazonaws.com:8000"
 
     
     const navigate = useNavigate()
-
-    const [formData, setFormData] = React.useState({
-        userName:"",
-        password: "",
-        showPassword: false
-    })
-
+    
     const [showError, setShowError] = React.useState(false)
     
     const showMessage = {
         display: showError? "block" : "none"
     }
+
     
     function handleChange(event) {
         const {name, value, type, checked} = event.target
-        setFormData(prevFormData => {
-            return {
-                ...prevFormData,
-                [name]: type === "checkbox"? checked : value
-            }
-        })
+        return handleData(name, value, type, checked)
     }
+
+    const changeAuth = () => setIsAuth(true)  
+    
     
     const fetchData = (user, pass) => {
         const options = {
@@ -43,10 +36,10 @@ function LoginPage() {
         }
         
         axios.request(options).then(function (response) {
-            console.log(response)
             if (response.status === 200) {
                 setShowError(false)
-                navigate("/home")
+                navigate("/")
+                changeAuth()
             } else {
                 alert('Invalid credentials')
             }
@@ -63,6 +56,10 @@ function LoginPage() {
         console.log(formData)
         setShowError(false)
         fetchData(formData.userName, formData.password)
+    }
+
+    function handleClick(){
+        return (setIsSubmitted(true))
     }
     
     return (
@@ -102,7 +99,7 @@ function LoginPage() {
                             />
                         <label htmlFor="showText">Show Password</label>
                         
-                        <button className="submit-button">Submit</button>
+                        <button className="submit-button" onClick={handleClick}>Submit</button>
                     </form>
                 </div>
             </div>
